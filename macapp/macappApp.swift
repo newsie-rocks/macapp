@@ -9,12 +9,24 @@ import SwiftUI
 
 @main
 struct macappApp: App {
-    let persistenceController = PersistenceController.shared
-
+    /// Scene phase
+    @Environment(\.scenePhase) var scenePhase
+    
+    /// data controller instance
+    let dataController = DataController.shared
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            MainView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
+        }.onChange(of: scenePhase) {_ in
+            // NB: save the data when the app is put in the background
+            dataController.save()
         }
+#if os(macOS)
+        Settings {
+            SettingsView()
+        }
+#endif
     }
 }

@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01737E4B2A60108700CD6F3C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 01737E4A2A60108700CD6F3C /* Settings.bundle */; };
+		01C031842A6020270076C3EB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C031832A6020270076C3EB /* SettingsView.swift */; };
+		01C031892A603C970076C3EB /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C031882A603C970076C3EB /* Styles.swift */; };
+		01C0318C2A6046250076C3EB /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0318B2A6046250076C3EB /* DataController.swift */; };
+		01C0318F2A608A740076C3EB /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01C0318D2A608A740076C3EB /* Data.xcdatamodeld */; };
 		01E4F6922A5F4C1000953FF6 /* macappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6912A5F4C1000953FF6 /* macappApp.swift */; };
-		01E4F6942A5F4C1000953FF6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6932A5F4C1000953FF6 /* Persistence.swift */; };
-		01E4F6972A5F4C1000953FF6 /* macapp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6952A5F4C1000953FF6 /* macapp.xcdatamodeld */; };
-		01E4F6992A5F4C1000953FF6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6982A5F4C1000953FF6 /* ContentView.swift */; };
+		01E4F6992A5F4C1000953FF6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6982A5F4C1000953FF6 /* MainView.swift */; };
 		01E4F69B2A5F4C1000953FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E4F69A2A5F4C1000953FF6 /* Assets.xcassets */; };
 		01E4F69F2A5F4C1000953FF6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E4F69E2A5F4C1000953FF6 /* Preview Assets.xcassets */; };
 		01E4F6A92A5F4C1000953FF6 /* macappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6A82A5F4C1000953FF6 /* macappTests.swift */; };
@@ -36,11 +39,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01737E4A2A60108700CD6F3C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		01C031832A6020270076C3EB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		01C031882A603C970076C3EB /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		01C0318B2A6046250076C3EB /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		01C0318E2A608A740076C3EB /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		01E4F68E2A5F4C1000953FF6 /* macapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E4F6912A5F4C1000953FF6 /* macappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macappApp.swift; sourceTree = "<group>"; };
-		01E4F6932A5F4C1000953FF6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		01E4F6962A5F4C1000953FF6 /* macapp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = macapp.xcdatamodel; sourceTree = "<group>"; };
-		01E4F6982A5F4C1000953FF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		01E4F6982A5F4C1000953FF6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		01E4F69A2A5F4C1000953FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01E4F69C2A5F4C1000953FF6 /* macapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macapp.entitlements; sourceTree = "<group>"; };
 		01E4F69E2A5F4C1000953FF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -76,6 +82,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01C031822A601EFF0076C3EB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				01C031882A603C970076C3EB /* Styles.swift */,
+				01C031832A6020270076C3EB /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		01C031852A603BA20076C3EB /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		01C0318A2A60460F0076C3EB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				01C0318B2A6046250076C3EB /* DataController.swift */,
+				01C0318D2A608A740076C3EB /* Data.xcdatamodeld */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		01E4F6852A5F4C1000953FF6 = {
 			isa = PBXGroup;
 			children = (
@@ -99,12 +130,14 @@
 		01E4F6902A5F4C1000953FF6 /* macapp */ = {
 			isa = PBXGroup;
 			children = (
+				01C0318A2A60460F0076C3EB /* Controllers */,
+				01C031852A603BA20076C3EB /* Styles */,
+				01C031822A601EFF0076C3EB /* Views */,
 				01E4F6912A5F4C1000953FF6 /* macappApp.swift */,
-				01E4F6932A5F4C1000953FF6 /* Persistence.swift */,
-				01E4F6982A5F4C1000953FF6 /* ContentView.swift */,
+				01737E4A2A60108700CD6F3C /* Settings.bundle */,
+				01E4F6982A5F4C1000953FF6 /* MainView.swift */,
 				01E4F69A2A5F4C1000953FF6 /* Assets.xcassets */,
 				01E4F69C2A5F4C1000953FF6 /* macapp.entitlements */,
-				01E4F6952A5F4C1000953FF6 /* macapp.xcdatamodeld */,
 				01E4F69D2A5F4C1000953FF6 /* Preview Content */,
 			);
 			path = macapp;
@@ -240,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01E4F69F2A5F4C1000953FF6 /* Preview Assets.xcassets in Resources */,
+				01737E4B2A60108700CD6F3C /* Settings.bundle in Resources */,
 				01E4F69B2A5F4C1000953FF6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,10 +299,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01E4F6972A5F4C1000953FF6 /* macapp.xcdatamodeld in Sources */,
+				01C031842A6020270076C3EB /* SettingsView.swift in Sources */,
+				01C0318C2A6046250076C3EB /* DataController.swift in Sources */,
+				01C0318F2A608A740076C3EB /* Data.xcdatamodeld in Sources */,
 				01E4F6922A5F4C1000953FF6 /* macappApp.swift in Sources */,
-				01E4F6992A5F4C1000953FF6 /* ContentView.swift in Sources */,
-				01E4F6942A5F4C1000953FF6 /* Persistence.swift in Sources */,
+				01C031892A603C970076C3EB /* Styles.swift in Sources */,
+				01E4F6992A5F4C1000953FF6 /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = macapp/macapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -427,12 +464,14 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -457,6 +496,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = macapp/macapp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -465,12 +505,14 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -622,13 +664,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		01E4F6952A5F4C1000953FF6 /* macapp.xcdatamodeld */ = {
+		01C0318D2A608A740076C3EB /* Data.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				01E4F6962A5F4C1000953FF6 /* macapp.xcdatamodel */,
+				01C0318E2A608A740076C3EB /* Data.xcdatamodel */,
 			);
-			currentVersion = 01E4F6962A5F4C1000953FF6 /* macapp.xcdatamodel */;
-			path = macapp.xcdatamodeld;
+			currentVersion = 01C0318E2A608A740076C3EB /* Data.xcdatamodel */;
+			path = Data.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
