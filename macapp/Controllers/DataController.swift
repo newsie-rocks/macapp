@@ -20,10 +20,12 @@ struct DataController {
     static var preview: DataController = {
         let controller = DataController()
         let viewContext = controller.container.viewContext
-        
-        let feed = Feed(context: viewContext)
-        feed.url = "https://news.ycombinator.com/rss"
-        
+        do {
+            try viewContext.save()
+        } catch {
+            let thisError = error as NSError
+            fatalError("Unresolved error \(thisError), \(thisError.userInfo)")
+        }
         return controller
     }()
     
@@ -43,6 +45,7 @@ struct DataController {
         }
     }
     
+    /// Saves the context
     func save() {
         let context = container.viewContext
 
