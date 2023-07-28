@@ -10,27 +10,17 @@ import Foundation
 
 /// Controller to manage the app data
 struct DataController {
-    /// Static instance of that controller
-    static let shared = DataController()
-    
     /// Persistent container
     let container: NSPersistentContainer
     
+    /// Static instance
+    static let shared: DataController = DataController()
+    
     /// Preview instance of the controller
-    static var preview: DataController = {
-        let controller = DataController()
-        let viewContext = controller.container.viewContext
-        do {
-            try viewContext.save()
-        } catch {
-            let thisError = error as NSError
-            fatalError("Unresolved error \(thisError), \(thisError.userInfo)")
-        }
-        return controller
-    }()
+    static var preview: DataController = DataController()
     
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Data")
+        container = NSPersistentContainer(name: "DataModel")
         
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")

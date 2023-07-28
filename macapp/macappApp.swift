@@ -9,19 +9,14 @@ import SwiftUI
 
 @main
 struct macappApp: App {
-    /// Scene phase
-    @Environment(\.scenePhase) var scenePhase
-    
+    // NB: The state is alive as long as the App is alive
     /// data controller instance
     let dataController = DataController.shared
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            HomeView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
-        }.onChange(of: scenePhase) {_ in
-            // NB: save the data when the app is put in the background
-            dataController.save()
         }
 #if os(macOS)
         Settings {
