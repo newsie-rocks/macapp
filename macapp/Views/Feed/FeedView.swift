@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct FeedView: View {
+    let feed: Feed
+    
     var articles: [Article] = []
     
     var body: some View {
         VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Text("\(feed.title ?? "")")
+            Text("\(feed.link?.absoluteString ?? "")")
             List {
                 ForEach(articles) { article in
                     ArticleRow(title: "Article here")
                 }
             }
         }
-        .navigationTitle("Title")
+        .navigationTitle("_")
     }
 }
 
@@ -38,7 +41,17 @@ private struct ArticleRow: View {
 }
 
 struct FeedView_Previews: PreviewProvider {
+    static let dataStore = DataStore.preview
+    
+    static private var feed: Feed = {
+        var feed = Feed(context: dataStore.container.viewContext)
+        feed.id = UUID()
+        feed.link = URL(string: "https://ai.googleblog.com/atom.xml")
+        feed.title = "My feed"
+        return feed
+    }()
+    
     static var previews: some View {
-        FeedView()
+        FeedView(feed: feed)
     }
 }

@@ -8,27 +8,25 @@
 import SwiftUI
 
 struct NewFeedView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     
-    @State private var feedUrl: String = ""
-    @State private var feedName: String = ""
+    @State private var url: String = ""
+    @State private var name: String = ""
     @State private var showError: Bool = false
     
     var body: some View {
         Form {
             Section {
-                TextField("URL", text: $feedUrl)
-                TextField("Name", text: $feedName)
+                TextField("URL", text: $url).keyboardType(.URL).textContentType(.URL)
+                TextField("Name", text: $name)
             } header: {
                 Text("Add a new feed")
             }
-            Section {
-                Button("Add this feed") {
-                    showError = !showError
-                }
-                Button("Cancel") {
-//                    dismiss.callAsFunction()
-                }
+            Button("Add this feed") {
+                showError = !showError
+            }
+            Button("Cancel") {
+                dismiss()
             }
         }
         .alert(isPresented: $showError) {
