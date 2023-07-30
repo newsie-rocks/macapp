@@ -13,10 +13,15 @@ struct DataStore {
     /// Persistent container
     let container: NSPersistentContainer
     
-    /// Static instance
+    /// Exposes the managed object context
+    var context: NSManagedObjectContext {
+        container.viewContext
+    }
+    
+    /// Static instance of the store
     static let shared: DataStore = DataStore()
     
-    /// Preview instance of the controller
+    /// Preview instance of the store
     static var preview: DataStore = {
         let store = DataStore(inMemory: true)
         
@@ -25,7 +30,7 @@ struct DataStore {
         feeds.append(("https://ai.googleblog.com/atom.xml", "Google AI"))
         feeds.append(("https://simonwillison.net/atom/everything/", "Willison blog"))
         for f in feeds {
-            let feed = Feed(context: store.container.viewContext)
+            let feed = Feed(context: store.context)
             feed.id = UUID()
             feed.link = URL(string: f.0)
             feed.title = f.1
@@ -51,10 +56,9 @@ struct DataStore {
         }
     }
     
-    /// Saves the context
+    
+    /// Saves to persistent storage
     func save() {
-        let context = container.viewContext
-
         if context.hasChanges {
             do {
                 try context.save()

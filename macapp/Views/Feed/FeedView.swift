@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeedView: View {
-    let feed: Feed
+    @ObservedObject var feed: Feed
     
     var articles: [Article] = []
     

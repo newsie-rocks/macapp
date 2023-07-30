@@ -5,51 +5,40 @@
 //  Created by nick on 12/07/2023.
 //
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct HomeView: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
-    
+    @EnvironmentObject var feedsController: FeedsController
+
     @State private var isNewFeedSheetOpened = false
 
-    @FetchRequest(entity: Feed.entity(), sortDescriptors: [])
-    private var myFeeds: FetchedResults<Feed>
-    
-    private var builtInFeeds: [Feed] {
-        myFeeds.map { feed in
-            feed
-        }
-    }
-    
     private func deleteFeeds(at offsets: IndexSet) {
         for idx in offsets {
-            let feed = myFeeds[idx]
-            managedObjectContext.delete(feed)
-        }
-        do {
-            try managedObjectContext.save()
-        } catch {
-            fatalError("Cannot save Core data")
+            let feed = feedsController.feeds[idx]
+            feedsController.deleteFeed(feed)
         }
     }
-    
-    var body: some View { 
+
+    var body: some View {
         NavigationStack {
             List {
                 Section("Built-in feeds") {
-                    ForEach(builtInFeeds, id: \.self) { feed in
+                    ForEach(feedsController.builtInFeeds, id: \.self) { feed in
                         FeedRow(feed: feed)
                     }
                 }
                 Section("My feeds") {
-                    ForEach(myFeeds) { feed in
+                    ForEach(feedsController.feeds) { feed in
                         FeedRow(feed: feed)
                     }
                     .onDelete(perform: deleteFeeds)
                 }
             }
             .listStyle(GroupedListStyle())
+            .refreshable {
+                feedsController.refresh()
+            }
             .navigationDestination(for: Feed.self) { feed in
                 FeedView(feed: feed)
             }
@@ -67,6 +56,9 @@ struct HomeView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
+                    .sheet(isPresented: $isNewFeedSheetOpened) {
+                        AddFeedView()
+                    }
                     EditButton()
                 }
                 ToolbarItemGroup(placement: .secondaryAction) {
@@ -77,9 +69,6 @@ struct HomeView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isNewFeedSheetOpened) {
-                NewFeedView()
-            }
         }
     }
 }
@@ -87,7 +76,7 @@ struct HomeView: View {
 /// A row for a specific feed
 private struct FeedRow: View {
     let feed: Feed
-    
+
     var body: some View {
         // NB: we pass a Hashable value instead of a View, so that the view
         // is not created each time the row is rendered
@@ -99,7 +88,7 @@ private struct FeedRow: View {
 }
 
 /////  Add new feed button
-//private struct AddNewFeedButton: View {
+// private struct AddNewFeedButton: View {
 //    @State private var isOpened = false;
 //
 //    var body: some View {
@@ -110,14 +99,13 @@ private struct FeedRow: View {
 //            Text("Viewed")
 //        }
 //    }
-//}
+// }
 
 /// Preview
 struct HomeView_Previews: PreviewProvider {
-    static let dataStore = DataStore.preview
-    
     static var previews: some View {
         HomeView()
-            .environment(\.managedObjectContext, dataStore.container.viewContext)
+            .previewInterfaceOrientation(.portrait)
+            .environmentObject(FeedsController.preview)
     }
 }
