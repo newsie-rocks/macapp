@@ -18,13 +18,13 @@
 		01C0318C2A6046250076C3EB /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0318B2A6046250076C3EB /* DataStore.swift */; };
 		01DE421A2A769883002123B7 /* ErrorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DE42192A769883002123B7 /* ErrorUtils.swift */; };
 		01DE421C2A769950002123B7 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DE421B2A769950002123B7 /* AppError.swift */; };
-		01E4F6922A5F4C1000953FF6 /* MacappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6912A5F4C1000953FF6 /* MacappApp.swift */; };
+		01E4F6922A5F4C1000953FF6 /* XosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6912A5F4C1000953FF6 /* XosApp.swift */; };
 		01E4F6992A5F4C1000953FF6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6982A5F4C1000953FF6 /* HomeView.swift */; };
 		01E4F69B2A5F4C1000953FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E4F69A2A5F4C1000953FF6 /* Assets.xcassets */; };
 		01E4F69F2A5F4C1000953FF6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E4F69E2A5F4C1000953FF6 /* Preview Assets.xcassets */; };
-		01E4F6A92A5F4C1000953FF6 /* MacappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6A82A5F4C1000953FF6 /* MacappTests.swift */; };
-		01E4F6B32A5F4C1000953FF6 /* MacappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6B22A5F4C1000953FF6 /* MacappUITests.swift */; };
-		01E4F6B52A5F4C1000953FF6 /* MacappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6B42A5F4C1000953FF6 /* MacappUITestsLaunchTests.swift */; };
+		01E4F6A92A5F4C1000953FF6 /* XosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6A82A5F4C1000953FF6 /* XosTests.swift */; };
+		01E4F6B32A5F4C1000953FF6 /* XosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6B22A5F4C1000953FF6 /* XosUITests.swift */; };
+		01E4F6B52A5F4C1000953FF6 /* XosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6B42A5F4C1000953FF6 /* XosUITestsLaunchTests.swift */; };
 		01FBACD02A76CBA20091A123 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01FBACCF2A76CBA20091A123 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -57,17 +57,17 @@
 		01C0318B2A6046250076C3EB /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		01DE42192A769883002123B7 /* ErrorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorUtils.swift; sourceTree = "<group>"; };
 		01DE421B2A769950002123B7 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
-		01E4F68E2A5F4C1000953FF6 /* macapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		01E4F6912A5F4C1000953FF6 /* MacappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacappApp.swift; sourceTree = "<group>"; };
+		01E4F68E2A5F4C1000953FF6 /* Newsie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Newsie.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01E4F6912A5F4C1000953FF6 /* XosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XosApp.swift; sourceTree = "<group>"; };
 		01E4F6982A5F4C1000953FF6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		01E4F69A2A5F4C1000953FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		01E4F69C2A5F4C1000953FF6 /* macapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macapp.entitlements; sourceTree = "<group>"; };
+		01E4F69C2A5F4C1000953FF6 /* xos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = xos.entitlements; sourceTree = "<group>"; };
 		01E4F69E2A5F4C1000953FF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		01E4F6A42A5F4C1000953FF6 /* macappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		01E4F6A82A5F4C1000953FF6 /* MacappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacappTests.swift; sourceTree = "<group>"; };
-		01E4F6AE2A5F4C1000953FF6 /* macappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		01E4F6B22A5F4C1000953FF6 /* MacappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacappUITests.swift; sourceTree = "<group>"; };
-		01E4F6B42A5F4C1000953FF6 /* MacappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacappUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		01E4F6A42A5F4C1000953FF6 /* xosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01E4F6A82A5F4C1000953FF6 /* XosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XosTests.swift; sourceTree = "<group>"; };
+		01E4F6AE2A5F4C1000953FF6 /* xosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01E4F6B22A5F4C1000953FF6 /* XosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XosUITests.swift; sourceTree = "<group>"; };
+		01E4F6B42A5F4C1000953FF6 /* XosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XosUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		01FBACCE2A76C8BE0091A123 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		01FBACCF2A76CBA20091A123 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,29 +190,30 @@
 			isa = PBXGroup;
 			children = (
 				011ADCCE2A73EB08005F38EE /* README.md */,
-				01E4F6902A5F4C1000953FF6 /* macapp */,
-				01E4F6A72A5F4C1000953FF6 /* macappTests */,
-				01E4F6B12A5F4C1000953FF6 /* macappUITests */,
+				01E4F6902A5F4C1000953FF6 /* xos */,
+				01E4F6A72A5F4C1000953FF6 /* xosTests */,
+				01E4F6B12A5F4C1000953FF6 /* xosUITests */,
 				01E4F68F2A5F4C1000953FF6 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		01E4F68F2A5F4C1000953FF6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				01E4F68E2A5F4C1000953FF6 /* macapp.app */,
-				01E4F6A42A5F4C1000953FF6 /* macappTests.xctest */,
-				01E4F6AE2A5F4C1000953FF6 /* macappUITests.xctest */,
+				01E4F68E2A5F4C1000953FF6 /* Newsie.app */,
+				01E4F6A42A5F4C1000953FF6 /* xosTests.xctest */,
+				01E4F6AE2A5F4C1000953FF6 /* xosUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		01E4F6902A5F4C1000953FF6 /* macapp */ = {
+		01E4F6902A5F4C1000953FF6 /* xos */ = {
 			isa = PBXGroup;
 			children = (
 				01FBACCE2A76C8BE0091A123 /* Info.plist */,
-				01E4F69C2A5F4C1000953FF6 /* macapp.entitlements */,
-				01E4F6912A5F4C1000953FF6 /* MacappApp.swift */,
+				01E4F69C2A5F4C1000953FF6 /* xos.entitlements */,
+				01E4F6912A5F4C1000953FF6 /* XosApp.swift */,
 				01FBACCF2A76CBA20091A123 /* LaunchScreen.storyboard */,
 				011ADCD22A73EDC1005F38EE /* Data */,
 				011ADCE52A756ADD005F38EE /* Controllers */,
@@ -220,7 +221,7 @@
 				011ADCDF2A7518D0005F38EE /* Utils */,
 				011ADCCF2A73EBBF005F38EE /* Views */,
 			);
-			path = macapp;
+			path = xos;
 			sourceTree = "<group>";
 		};
 		01E4F69D2A5F4C1000953FF6 /* Preview Content */ = {
@@ -231,29 +232,29 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		01E4F6A72A5F4C1000953FF6 /* macappTests */ = {
+		01E4F6A72A5F4C1000953FF6 /* xosTests */ = {
 			isa = PBXGroup;
 			children = (
-				01E4F6A82A5F4C1000953FF6 /* MacappTests.swift */,
+				01E4F6A82A5F4C1000953FF6 /* XosTests.swift */,
 			);
-			path = macappTests;
+			path = xosTests;
 			sourceTree = "<group>";
 		};
-		01E4F6B12A5F4C1000953FF6 /* macappUITests */ = {
+		01E4F6B12A5F4C1000953FF6 /* xosUITests */ = {
 			isa = PBXGroup;
 			children = (
-				01E4F6B22A5F4C1000953FF6 /* MacappUITests.swift */,
-				01E4F6B42A5F4C1000953FF6 /* MacappUITestsLaunchTests.swift */,
+				01E4F6B22A5F4C1000953FF6 /* XosUITests.swift */,
+				01E4F6B42A5F4C1000953FF6 /* XosUITestsLaunchTests.swift */,
 			);
-			path = macappUITests;
+			path = xosUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		01E4F68D2A5F4C1000953FF6 /* macapp */ = {
+		01E4F68D2A5F4C1000953FF6 /* xos */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 01E4F6B82A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "macapp" */;
+			buildConfigurationList = 01E4F6B82A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "xos" */;
 			buildPhases = (
 				01E4F68A2A5F4C1000953FF6 /* Sources */,
 				01E4F68B2A5F4C1000953FF6 /* Frameworks */,
@@ -264,17 +265,17 @@
 			);
 			dependencies = (
 			);
-			name = macapp;
+			name = xos;
 			packageProductDependencies = (
 				011ADCE12A7537DA005F38EE /* FeedKit */,
 			);
 			productName = macapp;
-			productReference = 01E4F68E2A5F4C1000953FF6 /* macapp.app */;
+			productReference = 01E4F68E2A5F4C1000953FF6 /* Newsie.app */;
 			productType = "com.apple.product-type.application";
 		};
-		01E4F6A32A5F4C1000953FF6 /* macappTests */ = {
+		01E4F6A32A5F4C1000953FF6 /* xosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 01E4F6BB2A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "macappTests" */;
+			buildConfigurationList = 01E4F6BB2A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "xosTests" */;
 			buildPhases = (
 				01E4F6A02A5F4C1000953FF6 /* Sources */,
 				01E4F6A12A5F4C1000953FF6 /* Frameworks */,
@@ -285,14 +286,14 @@
 			dependencies = (
 				01E4F6A62A5F4C1000953FF6 /* PBXTargetDependency */,
 			);
-			name = macappTests;
+			name = xosTests;
 			productName = macappTests;
-			productReference = 01E4F6A42A5F4C1000953FF6 /* macappTests.xctest */;
+			productReference = 01E4F6A42A5F4C1000953FF6 /* xosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		01E4F6AD2A5F4C1000953FF6 /* macappUITests */ = {
+		01E4F6AD2A5F4C1000953FF6 /* xosUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 01E4F6BE2A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "macappUITests" */;
+			buildConfigurationList = 01E4F6BE2A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "xosUITests" */;
 			buildPhases = (
 				01E4F6AA2A5F4C1000953FF6 /* Sources */,
 				01E4F6AB2A5F4C1000953FF6 /* Frameworks */,
@@ -303,9 +304,9 @@
 			dependencies = (
 				01E4F6B02A5F4C1000953FF6 /* PBXTargetDependency */,
 			);
-			name = macappUITests;
+			name = xosUITests;
 			productName = macappUITests;
-			productReference = 01E4F6AE2A5F4C1000953FF6 /* macappUITests.xctest */;
+			productReference = 01E4F6AE2A5F4C1000953FF6 /* xosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -331,7 +332,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 01E4F6892A5F4C1000953FF6 /* Build configuration list for PBXProject "macapp" */;
+			buildConfigurationList = 01E4F6892A5F4C1000953FF6 /* Build configuration list for PBXProject "xos" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -347,9 +348,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				01E4F68D2A5F4C1000953FF6 /* macapp */,
-				01E4F6A32A5F4C1000953FF6 /* macappTests */,
-				01E4F6AD2A5F4C1000953FF6 /* macappUITests */,
+				01E4F68D2A5F4C1000953FF6 /* xos */,
+				01E4F6A32A5F4C1000953FF6 /* xosTests */,
+				01E4F6AD2A5F4C1000953FF6 /* xosUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -414,7 +415,7 @@
 				01C031842A6020270076C3EB /* SettingsView.swift in Sources */,
 				01C0318C2A6046250076C3EB /* DataStore.swift in Sources */,
 				011ADCDC2A7421C6005F38EE /* ArticleView.swift in Sources */,
-				01E4F6922A5F4C1000953FF6 /* MacappApp.swift in Sources */,
+				01E4F6922A5F4C1000953FF6 /* XosApp.swift in Sources */,
 				011ADCD62A740DD4005F38EE /* DataModel.xcdatamodeld in Sources */,
 				01DE421C2A769950002123B7 /* AppError.swift in Sources */,
 				011ADCE72A756B03005F38EE /* FeedsController.swift in Sources */,
@@ -426,7 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01E4F6A92A5F4C1000953FF6 /* MacappTests.swift in Sources */,
+				01E4F6A92A5F4C1000953FF6 /* XosTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,8 +435,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01E4F6B52A5F4C1000953FF6 /* MacappUITestsLaunchTests.swift in Sources */,
-				01E4F6B32A5F4C1000953FF6 /* MacappUITests.swift in Sources */,
+				01E4F6B52A5F4C1000953FF6 /* XosUITestsLaunchTests.swift in Sources */,
+				01E4F6B32A5F4C1000953FF6 /* XosUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,12 +445,12 @@
 /* Begin PBXTargetDependency section */
 		01E4F6A62A5F4C1000953FF6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 01E4F68D2A5F4C1000953FF6 /* macapp */;
+			target = 01E4F68D2A5F4C1000953FF6 /* xos */;
 			targetProxy = 01E4F6A52A5F4C1000953FF6 /* PBXContainerItemProxy */;
 		};
 		01E4F6B02A5F4C1000953FF6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 01E4F68D2A5F4C1000953FF6 /* macapp */;
+			target = 01E4F68D2A5F4C1000953FF6 /* xos */;
 			targetProxy = 01E4F6AF2A5F4C1000953FF6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -570,16 +571,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = macapp/macapp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = xos/xos.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"macapp/Resources/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"xos/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 75S7WRLH3U;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = macapp/Info.plist;
+				INFOPLIST_FILE = xos/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -601,8 +602,8 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = newsie.rocks.macapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = newsie.rocks.app;
+				PRODUCT_NAME = Newsie;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -617,16 +618,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = macapp/macapp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = xos/xos.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"macapp/Resources/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"xos/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 75S7WRLH3U;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = macapp/Info.plist;
+				INFOPLIST_FILE = xos/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -648,8 +649,8 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = newsie.rocks.macapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = newsie.rocks.app;
+				PRODUCT_NAME = Newsie;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -677,7 +678,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/macapp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/macapp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xos.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/xos";
 			};
 			name = Debug;
 		};
@@ -700,7 +701,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/macapp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/macapp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xos.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/xos";
 			};
 			name = Release;
 		};
@@ -715,14 +716,14 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = newsie.rocks.macappUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = newsie.rocks.xosUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = macapp;
+				TEST_TARGET_NAME = xos;
 			};
 			name = Debug;
 		};
@@ -737,21 +738,21 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = newsie.rocks.macappUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = newsie.rocks.xosUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = macapp;
+				TEST_TARGET_NAME = xos;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		01E4F6892A5F4C1000953FF6 /* Build configuration list for PBXProject "macapp" */ = {
+		01E4F6892A5F4C1000953FF6 /* Build configuration list for PBXProject "xos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				01E4F6B62A5F4C1000953FF6 /* Debug */,
@@ -760,7 +761,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		01E4F6B82A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "macapp" */ = {
+		01E4F6B82A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "xos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				01E4F6B92A5F4C1000953FF6 /* Debug */,
@@ -769,7 +770,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		01E4F6BB2A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "macappTests" */ = {
+		01E4F6BB2A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "xosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				01E4F6BC2A5F4C1000953FF6 /* Debug */,
@@ -778,7 +779,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		01E4F6BE2A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "macappUITests" */ = {
+		01E4F6BE2A5F4C1000953FF6 /* Build configuration list for PBXNativeTarget "xosUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				01E4F6BF2A5F4C1000953FF6 /* Debug */,
