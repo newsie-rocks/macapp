@@ -11,7 +11,7 @@ import SwiftUI
 struct SettingsView: View {
     @AppStorage("showPreview") private var showPreview = true
     @AppStorage("fontSize") private var fontSize = 12.0
-    
+
     var body: some View {
         List {
             Section("Account") {
@@ -25,7 +25,7 @@ struct SettingsView: View {
                         Text("Font Size (\(fontSize, specifier: "%.0f") pts)")
                     }
                 }
-                
+
             }
             Section("App settings") {
                 Label("API key", systemImage: "key")

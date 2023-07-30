@@ -8,18 +8,18 @@
 import SwiftUI
 
 @main
-struct macappApp: App {
+struct MacappApp: App {
     let feedsController: FeedsController = FeedsController.shared
-    
+
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environmentObject(feedsController)
         }
-//#if os(macOS)
+// #if os(macOS)
 //        Settings {
 //            SettingsView()
 //        }
-//#endif
+// #endif
     }
 }

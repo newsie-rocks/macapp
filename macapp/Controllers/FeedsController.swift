@@ -17,10 +17,10 @@ import FeedKit
 class FeedsController: ObservableObject {
     /// Data store
     private let store: DataStore
-    
+
     /// Feeds
     @Published var feeds: [Feed] = []
-    
+
     /// Built-in feeds
     @Published var builtInFeeds: [Feed] = []
 
@@ -48,7 +48,7 @@ class FeedsController: ObservableObject {
 
         feeds = results
     }
-    
+
     /// Adds a new feed
     func addFeed(
         _ url: String,
@@ -56,7 +56,7 @@ class FeedsController: ObservableObject {
     ) async throws {
         // validate the url
         let link = try URL(string: url) ?! AppError.invalidParam("Invalid URL \(url)")
-        
+
         // read the feed
         let parser = FeedParser(URL: link)
 //        let res = await parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { (result) in
@@ -65,17 +65,17 @@ class FeedsController: ObservableObject {
 //                // ..and update the UI
 //            }
 //        }
-        
+
         let feed = Feed(context: store.context)
         feed.id = UUID()
         feed.link = link
         feed.name = name
 //        feed.title = title
-        
+
         store.save()
         refresh()
     }
-    
+
     /// Deletes a feed
     func deleteFeed(_ feed: Feed) {
         store.context.delete(feed)

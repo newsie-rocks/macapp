@@ -12,42 +12,41 @@ import Foundation
 struct DataStore {
     /// Persistent container
     let container: NSPersistentContainer
-    
+
     /// Exposes the managed object context
     var context: NSManagedObjectContext {
         container.viewContext
     }
-    
+
     /// Static instance of the store
-    static let shared: DataStore = DataStore()
-    
+    static let shared: DataStore = .init()
+
     /// Preview instance of the store
     static var preview: DataStore = {
         let store = DataStore(inMemory: true)
-        
+
         // add sample data for preview
-        var feeds: [(String, String)] = []
-        feeds.append(("https://ai.googleblog.com/atom.xml", "Google AI"))
-        feeds.append(("https://simonwillison.net/atom/everything/", "Willison blog"))
-        for f in feeds {
+        var samples: [(String, String)] = []
+        samples.append(("https://ai.googleblog.com/atom.xml", "Google AI"))
+        samples.append(("https://simonwillison.net/atom/everything/", "Willison blog"))
+        for sample in samples {
             let feed = Feed(context: store.context)
             feed.id = UUID()
-            feed.link = URL(string: f.0)
-            feed.title = f.1
+            feed.link = URL(string: sample.0)
+            feed.title = sample.1
         }
-        
+
         return store
     }()
-    
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "DataModel")
-        
+
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
-        
-        container.loadPersistentStores {storeDescription, error in
+
+        container.loadPersistentStores { _, error in
             if let error = error {
                 if let error = error as NSError? {
                     fatalError("Unresolved error \(error)")
@@ -55,8 +54,7 @@ struct DataStore {
             }
         }
     }
-    
-    
+
     /// Saves to persistent storage
     func save() {
         if context.hasChanges {

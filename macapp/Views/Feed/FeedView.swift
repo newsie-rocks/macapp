@@ -9,15 +9,15 @@ import SwiftUI
 
 struct FeedView: View {
     @ObservedObject var feed: Feed
-    
+
     var articles: [Article] = []
-    
+
     var body: some View {
         VStack {
             Text("\(feed.title ?? "")")
             Text("\(feed.link?.absoluteString ?? "")")
             List {
-                ForEach(articles) { article in
+                ForEach(articles) { _ in
                     ArticleRow(title: "Article here")
                 }
             }
@@ -29,7 +29,7 @@ struct FeedView: View {
 /// A row for a single article
 private struct ArticleRow: View {
     var title: String
-    
+
     var body: some View {
         NavigationLink {
             // NB: This shows as a separate page
@@ -42,7 +42,7 @@ private struct ArticleRow: View {
 
 struct FeedView_Previews: PreviewProvider {
     static let dataStore = DataStore.preview
-    
+
     static private var feed: Feed = {
         var feed = Feed(context: dataStore.container.viewContext)
         feed.id = UUID()
@@ -50,7 +50,7 @@ struct FeedView_Previews: PreviewProvider {
         feed.title = "My feed"
         return feed
     }()
-    
+
     static var previews: some View {
         FeedView(feed: feed)
     }

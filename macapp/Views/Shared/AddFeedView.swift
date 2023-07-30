@@ -19,7 +19,7 @@ struct AddFeedView: View {
     @State private var url: String = ""
     @State private var name: String = ""
     @FocusState private var focusedField: FocusedField?
-    @State private var error: String? = nil
+    @State private var error: String?
     @State private var showError: Bool = false
     @State private var isInProgress: Bool = false
 
@@ -35,8 +35,7 @@ struct AddFeedView: View {
             )
             dismiss()
         } catch AppError.generic(let message),
-            AppError.invalidParam(let message)
-        {
+            AppError.invalidParam(let message) {
             self.error = message
             showError = true
         } catch {
@@ -62,12 +61,12 @@ struct AddFeedView: View {
             .navigationTitle("New feed")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", role: .cancel) {
                         dismiss()
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .confirmationAction) {
                     if !isInProgress {
                         Button {
                             Task {

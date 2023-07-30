@@ -18,13 +18,13 @@
 		01C0318C2A6046250076C3EB /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0318B2A6046250076C3EB /* DataStore.swift */; };
 		01DE421A2A769883002123B7 /* ErrorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DE42192A769883002123B7 /* ErrorUtils.swift */; };
 		01DE421C2A769950002123B7 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DE421B2A769950002123B7 /* AppError.swift */; };
-		01E4F6922A5F4C1000953FF6 /* macappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6912A5F4C1000953FF6 /* macappApp.swift */; };
+		01E4F6922A5F4C1000953FF6 /* MacappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6912A5F4C1000953FF6 /* MacappApp.swift */; };
 		01E4F6992A5F4C1000953FF6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6982A5F4C1000953FF6 /* HomeView.swift */; };
 		01E4F69B2A5F4C1000953FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E4F69A2A5F4C1000953FF6 /* Assets.xcassets */; };
 		01E4F69F2A5F4C1000953FF6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E4F69E2A5F4C1000953FF6 /* Preview Assets.xcassets */; };
-		01E4F6A92A5F4C1000953FF6 /* macappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6A82A5F4C1000953FF6 /* macappTests.swift */; };
-		01E4F6B32A5F4C1000953FF6 /* macappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6B22A5F4C1000953FF6 /* macappUITests.swift */; };
-		01E4F6B52A5F4C1000953FF6 /* macappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6B42A5F4C1000953FF6 /* macappUITestsLaunchTests.swift */; };
+		01E4F6A92A5F4C1000953FF6 /* MacappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6A82A5F4C1000953FF6 /* MacappTests.swift */; };
+		01E4F6B32A5F4C1000953FF6 /* MacappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6B22A5F4C1000953FF6 /* MacappUITests.swift */; };
+		01E4F6B52A5F4C1000953FF6 /* MacappUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6B42A5F4C1000953FF6 /* MacappUITestsLaunchTests.swift */; };
 		01FBACD02A76CBA20091A123 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01FBACCF2A76CBA20091A123 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -58,16 +58,16 @@
 		01DE42192A769883002123B7 /* ErrorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorUtils.swift; sourceTree = "<group>"; };
 		01DE421B2A769950002123B7 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		01E4F68E2A5F4C1000953FF6 /* macapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		01E4F6912A5F4C1000953FF6 /* macappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macappApp.swift; sourceTree = "<group>"; };
+		01E4F6912A5F4C1000953FF6 /* MacappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacappApp.swift; sourceTree = "<group>"; };
 		01E4F6982A5F4C1000953FF6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		01E4F69A2A5F4C1000953FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01E4F69C2A5F4C1000953FF6 /* macapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macapp.entitlements; sourceTree = "<group>"; };
 		01E4F69E2A5F4C1000953FF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		01E4F6A42A5F4C1000953FF6 /* macappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		01E4F6A82A5F4C1000953FF6 /* macappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macappTests.swift; sourceTree = "<group>"; };
+		01E4F6A82A5F4C1000953FF6 /* MacappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacappTests.swift; sourceTree = "<group>"; };
 		01E4F6AE2A5F4C1000953FF6 /* macappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		01E4F6B22A5F4C1000953FF6 /* macappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macappUITests.swift; sourceTree = "<group>"; };
-		01E4F6B42A5F4C1000953FF6 /* macappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macappUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		01E4F6B22A5F4C1000953FF6 /* MacappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacappUITests.swift; sourceTree = "<group>"; };
+		01E4F6B42A5F4C1000953FF6 /* MacappUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacappUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		01FBACCE2A76C8BE0091A123 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		01FBACCF2A76CBA20091A123 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,7 +212,7 @@
 			children = (
 				01FBACCE2A76C8BE0091A123 /* Info.plist */,
 				01E4F69C2A5F4C1000953FF6 /* macapp.entitlements */,
-				01E4F6912A5F4C1000953FF6 /* macappApp.swift */,
+				01E4F6912A5F4C1000953FF6 /* MacappApp.swift */,
 				01FBACCF2A76CBA20091A123 /* LaunchScreen.storyboard */,
 				011ADCD22A73EDC1005F38EE /* Data */,
 				011ADCE52A756ADD005F38EE /* Controllers */,
@@ -234,7 +234,7 @@
 		01E4F6A72A5F4C1000953FF6 /* macappTests */ = {
 			isa = PBXGroup;
 			children = (
-				01E4F6A82A5F4C1000953FF6 /* macappTests.swift */,
+				01E4F6A82A5F4C1000953FF6 /* MacappTests.swift */,
 			);
 			path = macappTests;
 			sourceTree = "<group>";
@@ -242,8 +242,8 @@
 		01E4F6B12A5F4C1000953FF6 /* macappUITests */ = {
 			isa = PBXGroup;
 			children = (
-				01E4F6B22A5F4C1000953FF6 /* macappUITests.swift */,
-				01E4F6B42A5F4C1000953FF6 /* macappUITestsLaunchTests.swift */,
+				01E4F6B22A5F4C1000953FF6 /* MacappUITests.swift */,
+				01E4F6B42A5F4C1000953FF6 /* MacappUITestsLaunchTests.swift */,
 			);
 			path = macappUITests;
 			sourceTree = "<group>";
@@ -258,6 +258,7 @@
 				01E4F68A2A5F4C1000953FF6 /* Sources */,
 				01E4F68B2A5F4C1000953FF6 /* Frameworks */,
 				01E4F68C2A5F4C1000953FF6 /* Resources */,
+				01B1DF822A76ED5A0054010D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -381,6 +382,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01B1DF822A76ED5A0054010D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then \n    swiftlint --fix && swiftlint\nelse\n    echo \"warning: SwiftLint not installed\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		01E4F68A2A5F4C1000953FF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -392,7 +414,7 @@
 				01C031842A6020270076C3EB /* SettingsView.swift in Sources */,
 				01C0318C2A6046250076C3EB /* DataStore.swift in Sources */,
 				011ADCDC2A7421C6005F38EE /* ArticleView.swift in Sources */,
-				01E4F6922A5F4C1000953FF6 /* macappApp.swift in Sources */,
+				01E4F6922A5F4C1000953FF6 /* MacappApp.swift in Sources */,
 				011ADCD62A740DD4005F38EE /* DataModel.xcdatamodeld in Sources */,
 				01DE421C2A769950002123B7 /* AppError.swift in Sources */,
 				011ADCE72A756B03005F38EE /* FeedsController.swift in Sources */,
@@ -404,7 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01E4F6A92A5F4C1000953FF6 /* macappTests.swift in Sources */,
+				01E4F6A92A5F4C1000953FF6 /* MacappTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,8 +434,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01E4F6B52A5F4C1000953FF6 /* macappUITestsLaunchTests.swift in Sources */,
-				01E4F6B32A5F4C1000953FF6 /* macappUITests.swift in Sources */,
+				01E4F6B52A5F4C1000953FF6 /* MacappUITestsLaunchTests.swift in Sources */,
+				01E4F6B32A5F4C1000953FF6 /* MacappUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

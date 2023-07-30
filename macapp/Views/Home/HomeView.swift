@@ -43,7 +43,7 @@ struct HomeView: View {
                 FeedView(feed: feed)
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItemGroup(placement: .navigation) {
                     Image("logo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -56,16 +56,15 @@ struct HomeView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
+                    // FIXME: fix frozen button issue
                     .sheet(isPresented: $isNewFeedSheetOpened) {
                         AddFeedView()
                     }
                     EditButton()
                 }
                 ToolbarItemGroup(placement: .secondaryAction) {
-                    NavigationLink {
-                        SettingsView()
-                    } label: {
-                        Image(systemName: "gear")
+                    NavigationLink(destination: SettingsView()) {
+                        Label("Settings", systemImage: "gear")
                     }
                 }
             }
