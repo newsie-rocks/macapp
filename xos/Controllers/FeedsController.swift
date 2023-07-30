@@ -58,7 +58,8 @@ class FeedsController: ObservableObject {
         let link = try URL(string: url) ?! AppError.invalidParam("Invalid URL \(url)")
 
         // read the feed
-        let parser = FeedParser(URL: link)
+        // TODO: implement feed parsing
+        _ = FeedParser(URL: link)
 //        let res = await parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { (result) in
 //            // Do your thing, then back to the Main thread
 //            DispatchQueue.main.async {

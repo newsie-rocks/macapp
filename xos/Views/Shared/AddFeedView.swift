@@ -13,8 +13,8 @@ private enum FocusedField {
 }
 
 struct AddFeedView: View {
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var feedsController: FeedsController
-    @Environment(\.dismiss) private var dismiss
 
     @State private var url: String = ""
     @State private var name: String = ""
@@ -28,7 +28,7 @@ struct AddFeedView: View {
         defer { isInProgress = false }
 
         do {
-            try await Task.sleep(nanoseconds: 1_000_000_000)
+            try await Task.sleep(nanoseconds: 5_000_000_000)
             try await feedsController.addFeed(
                 url ?! AppError.generic("Invalid url"),
                 name: name
@@ -52,6 +52,7 @@ struct AddFeedView: View {
                         .keyboardType(.URL)
                         .textContentType(.URL)
                         .disableAutocorrection(true)
+                        .textInputAutocapitalization(.never)
                         .focused($focusedField, equals: .url)
                     TextField("Name", text: $name)
                         .disableAutocorrection(true)

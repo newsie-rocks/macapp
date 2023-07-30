@@ -33,6 +33,8 @@ struct HomeView: View {
                         FeedRow(feed: feed)
                     }
                     .onDelete(perform: deleteFeeds)
+                    // TODO: remove the ability to swipe delete
+                    // .deleteDisabled(!editMode?.isEditing)
                 }
             }
             .listStyle(GroupedListStyle())
@@ -56,9 +58,14 @@ struct HomeView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
-                    // FIXME: fix frozen button issue
+                    // FIXME: frozen buttons after sheet dismissal
+                    // It seems that nesting the NavigationStack creates an issue with the
+                    // toolbar buttons being "frozen" after the sheet is dismissed.
+                    // It seems to be the case because the sheet hides the sheet toolbar,
+                    // so we limit the sheet size to cover half the screen
                     .sheet(isPresented: $isNewFeedSheetOpened) {
                         AddFeedView()
+                            .presentationDetents([.fraction(0.75)])
                     }
                     EditButton()
                 }
