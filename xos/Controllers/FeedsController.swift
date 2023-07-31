@@ -5,9 +5,9 @@
 //  Created by nick on 29/07/2023.
 //
 
-import Foundation
 import CoreData
 import FeedKit
+import Foundation
 
 /// Data controller
 ///
@@ -30,10 +30,10 @@ class FeedsController: ObservableObject {
     }
 
     /// Shared instance of the DataController
-    static let shared: FeedsController = FeedsController(DataStore.shared)
+    static let shared: FeedsController = .init(DataStore.shared)
 
     /// Preview instance of the DataController
-    static let preview: FeedsController = FeedsController(DataStore.preview)
+    static let preview: FeedsController = .init(DataStore.preview)
 
     /// Refreshes  the feeds
     func refresh() {
@@ -46,35 +46,46 @@ class FeedsController: ObservableObject {
             print("Could not fetch notes from Core Data.")
         }
 
-        feeds = results
+        DispatchQueue.main.async {
+            self.feeds = results
+        }
     }
 
     /// Adds a new feed
     func addFeed(
         _ url: String,
         name: String?
-    ) async throws {
-        // validate the url
-        let link = try URL(string: url) ?! AppError.invalidParam("Invalid URL \(url)")
+    ) async -> Result<Void, AppError> {
+        // check the URL is valid
+        guard let link = URL(string: url) else {
+            return .failure(.invalidParam("invalid URL \(url)"))
+        }
 
-        // read the feed
-        // TODO: implement feed parsing
-        _ = FeedParser(URL: link)
-//        let res = await parser.parseAsync(queue: DispatchQueue.global(qos: .userInitiated)) { (result) in
-//            // Do your thing, then back to the Main thread
-//            DispatchQueue.main.async {
-//                // ..and update the UI
-//            }
-//        }
+        // parse the feed
+        let rawFeed: FeedKit.Feed
+        let parser = FeedKit.FeedParser(URL: link)
+        switch await parser.asyncParse() {
+        case .success(let feed):
+            rawFeed = feed
+        case .failure(let error):
+            print(error)
+            return .failure(AppError.invalidParam("invalid RSS feed"))
+        }
 
         let feed = Feed(context: store.context)
         feed.id = UUID()
-        feed.link = link
-        feed.name = name
-//        feed.title = title
+        switch rawFeed {
+        case .rss(let rssFeed):
+            feed.title = rssFeed.title
+        case .atom(let atomFeed):
+            feed.title = atomFeed.title
+        case .json(let jsonFeed):
+            feed.title = jsonFeed.title
+        }
 
         store.save()
         refresh()
+        return .success(())
     }
 
     /// Deletes a feed
@@ -87,5 +98,17 @@ class FeedsController: ObservableObject {
     /// Exposes the built-in feeds
     func x_builtInFeeds() -> [Feed] {
         []
+    }
+}
+
+// NB: extension to convert the FeedKit callback to an async method
+extension FeedParser {
+    /// Parses a feed asynchronously
+    func asyncParse() async -> Result<FeedKit.Feed, ParserError> {
+        await withCheckedContinuation { continuation in
+            self.parseAsync(queue: DispatchQueue(label: "my.concurrent.queue", attributes: .concurrent)) { result in
+                continuation.resume(returning: result)
+            }
+        }
     }
 }

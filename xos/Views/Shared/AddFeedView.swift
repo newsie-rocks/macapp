@@ -18,28 +18,26 @@ struct AddFeedView: View {
 
     @State private var url: String = ""
     @State private var name: String = ""
-    @FocusState private var focusedField: FocusedField?
     @State private var error: String?
     @State private var showError: Bool = false
     @State private var isInProgress: Bool = false
+
+    @FocusState private var focusedField: FocusedField?
 
     private func submit() async {
         isInProgress = true
         defer { isInProgress = false }
 
-        do {
-            try await Task.sleep(nanoseconds: 5_000_000_000)
-            try await feedsController.addFeed(
-                url ?! AppError.generic("Invalid url"),
-                name: name
-            )
+        switch await feedsController.addFeed(
+            url,
+            name: name
+        ) {
+        case .success:
+            error = nil
+            showError = false
             dismiss()
-        } catch AppError.generic(let message),
-            AppError.invalidParam(let message) {
-            self.error = message
-            showError = true
-        } catch {
-            self.error = "An error occurred"
+        case .failure(let opError):
+            error = opError.errorDescription
             showError = true
         }
     }
@@ -54,24 +52,29 @@ struct AddFeedView: View {
                         .disableAutocorrection(true)
                         .textInputAutocapitalization(.never)
                         .focused($focusedField, equals: .url)
+                        .disabled(isInProgress)
                     TextField("Name", text: $name)
                         .disableAutocorrection(true)
                         .focused($focusedField, equals: .name)
+                        .disabled(isInProgress)
                 }
             }
             .navigationTitle("New feed")
             .navigationBarTitleDisplayMode(.inline)
+            .interactiveDismissDisabled(isInProgress)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", role: .cancel) {
                         dismiss()
                     }
+                    .disabled(isInProgress)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     if !isInProgress {
                         Button {
                             Task {
                                 await submit()
+                                isInProgress = false
                             }
                         } label: {
                             Text("Add").bold()
@@ -81,8 +84,6 @@ struct AddFeedView: View {
                     }
                 }
             }
-            .disabled(isInProgress)
-            .interactiveDismissDisabled(isInProgress)
             .onAppear {
                 focusedField = .url
             }
