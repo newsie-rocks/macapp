@@ -13,6 +13,7 @@
 		011ADCDE2A742476005F38EE /* AddFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011ADCDD2A742476005F38EE /* AddFeedView.swift */; };
 		011ADCE22A7537DA005F38EE /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 011ADCE12A7537DA005F38EE /* FeedKit */; };
 		011ADCE72A756B03005F38EE /* FeedsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011ADCE62A756B03005F38EE /* FeedsController.swift */; };
+		0141230B2A7742CB0071BA62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01FBACCF2A76CBA20091A123 /* LaunchScreen.storyboard */; platformFilter = ios; };
 		01737E4B2A60108700CD6F3C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 01737E4A2A60108700CD6F3C /* Settings.bundle */; };
 		01C031842A6020270076C3EB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C031832A6020270076C3EB /* SettingsView.swift */; };
 		01C0318C2A6046250076C3EB /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C0318B2A6046250076C3EB /* DataStore.swift */; };
@@ -25,7 +26,6 @@
 		01E4F6A92A5F4C1000953FF6 /* XosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6A82A5F4C1000953FF6 /* XosTests.swift */; };
 		01E4F6B32A5F4C1000953FF6 /* XosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6B22A5F4C1000953FF6 /* XosUITests.swift */; };
 		01E4F6B52A5F4C1000953FF6 /* XosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E4F6B42A5F4C1000953FF6 /* XosUITestsLaunchTests.swift */; };
-		01FBACD02A76CBA20091A123 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01FBACCF2A76CBA20091A123 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -361,7 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01E4F69F2A5F4C1000953FF6 /* Preview Assets.xcassets in Resources */,
-				01FBACD02A76CBA20091A123 /* LaunchScreen.storyboard in Resources */,
+				0141230B2A7742CB0071BA62 /* LaunchScreen.storyboard in Resources */,
 				01737E4B2A60108700CD6F3C /* Settings.bundle in Resources */,
 				01E4F69B2A5F4C1000953FF6 /* Assets.xcassets in Resources */,
 			);

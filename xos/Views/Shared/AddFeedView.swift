@@ -47,12 +47,14 @@ struct AddFeedView: View {
             Form {
                 Section {
                     TextField("URL", text: $url)
-                        .keyboardType(.URL)
-                        .textContentType(.URL)
                         .disableAutocorrection(true)
-                        .textInputAutocapitalization(.never)
                         .focused($focusedField, equals: .url)
                         .disabled(isInProgress)
+                        #if os(iOS)
+                        .keyboardType(.URL)
+                        .textContentType(.URL)
+                        .textInputAutocapitalization(.never)
+                        #endif
                     TextField("Name", text: $name)
                         .disableAutocorrection(true)
                         .focused($focusedField, equals: .name)
@@ -60,7 +62,9 @@ struct AddFeedView: View {
                 }
             }
             .navigationTitle("New feed")
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .interactiveDismissDisabled(isInProgress)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

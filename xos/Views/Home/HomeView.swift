@@ -37,7 +37,11 @@ struct HomeView: View {
                     // .deleteDisabled(!editMode?.isEditing)
                 }
             }
-            .listStyle(GroupedListStyle())
+            #if os(iOS)
+            .listStyle(.grouped)
+            #else
+            .listStyle(.plain)
+            #endif
             .refreshable {
                 feedsController.refresh()
             }
@@ -67,7 +71,9 @@ struct HomeView: View {
                         AddFeedView()
                             .presentationDetents([.fraction(0.75)])
                     }
+                    #if os(iOS)
                     EditButton()
+                    #endif
                 }
                 ToolbarItemGroup(placement: .secondaryAction) {
                     NavigationLink(destination: SettingsView()) {

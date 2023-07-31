@@ -61,6 +61,13 @@ class FeedsController: ObservableObject {
             return .failure(.invalidParam("invalid URL \(url)"))
         }
 
+        // check that the feed is not already added
+        if feeds.contains(where: { feed in
+            feed.link == link
+        }) {
+            return .failure(.invalidParam("Already subscribed"))
+        }
+
         // parse the feed
         let rawFeed: FeedKit.Feed
         let parser = FeedKit.FeedParser(URL: link)
@@ -74,6 +81,8 @@ class FeedsController: ObservableObject {
 
         let feed = Feed(context: store.context)
         feed.id = UUID()
+        feed.link = link
+        // TODO: complete the feeds
         switch rawFeed {
         case .rss(let rssFeed):
             feed.title = rssFeed.title
