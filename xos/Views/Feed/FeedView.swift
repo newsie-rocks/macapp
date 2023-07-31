@@ -15,29 +15,31 @@ struct FeedView: View {
         feed.image.flatMap { URL(string: $0) }
     }
 
-    var articles: [Article] = []
-
     var body: some View {
         VStack(alignment: .leading) {
-            VStack(alignment: .leading) {
-                Text(feed.title ?? "")
-                    .font(.title2)
-                    .bold()
-                    .padding()
-                Text("Description")
-//                if let desc = feed.desc {
-//                    Text(desc)
-//                }
-            }
-
-            Spacer()
             List {
-                ForEach(articles) { _ in
-                    ArticleRow(title: "Article here")
+//                Section {
+//                    Text(feed.title ?? "")
+//                        .font(.title2)
+//                        .bold()
+//                }
+                Section {
+                    ForEach(feed.articles.array(of: Article.self)) { article in
+                        ArticleRow(article: article)
+                    }
                 }
             }
+            #if os(iOS)
+            .listStyle(.grouped)
+            #else
+            .listStyle(.plain)
+            #endif
+            .navigationDestination(for: Article.self) { article in
+                ArticleView(article: article)
+            }
         }
-        .padding()
+        .navigationTitle("Feed")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .principal) {
                 AsyncImage(url: logoUrl) { image in
@@ -55,28 +57,7 @@ struct FeedView: View {
                     Image(systemName: "info.circle")
                 }
                 .sheet(isPresented: $isInfoMenuOpened) {
-                    VStack {
-                        Grid(alignment: .topLeading, horizontalSpacing: 8) {
-                            GridRow {
-                                Text("Title")
-                                Text(feed.title ?? "")
-                            }
-                            GridRow {
-                                Text("Link")
-                                Text(feed.link?.absoluteString ?? "")
-                            }
-                            GridRow {
-                                Text("Description")
-                                Text(feed.desc ?? "")
-                            }
-                            GridRow {
-                                Text("Image")
-                                Text(feed.image ?? "")
-                            }
-                        }
-                        .font(.system(size: 12))
-                        Spacer()
-                    }
+                    FeedInfoView(feed: feed)
                     .presentationDetents([.medium])
                     .padding()
                 }
@@ -87,30 +68,49 @@ struct FeedView: View {
 
 /// A row for a single article
 private struct ArticleRow: View {
-    var title: String
+    @ObservedObject var article: Article
 
     var body: some View {
-        NavigationLink {
-            // NB: This shows as a separate page
-            ArticleView()
-        } label: {
-            Label("An article", systemImage: "folder")
+        NavigationLink(value: article) {
+            VStack(alignment: .leading) {
+                Text(article.title ?? "")
+                Spacer()
+                    .frame(height: 8)
+                // TODO: fix description
+                Text("FIXME Description")
+                    .font(.caption)
+            }
         }
     }
 }
 
 struct FeedView_Previews: PreviewProvider {
-    static let dataStore = DataStore.preview
+    static let controller = FeedsController.preview
 
-    private static var feed: Feed = {
-        var feed = Feed(context: dataStore.container.viewContext)
-        feed.id = UUID()
-        feed.link = URL(string: "https://ai.googleblog.com/atom.xml")
-        feed.title = "My feed"
-        return feed
-    }()
+    // Container for a stateful PreviewProvider
+    // cf. https://peterfriese.dev/posts/swiftui-previews-interactive/
+    struct Container: View {
+        @EnvironmentObject var controller: FeedsController
+        @State var feed: Feed?
+
+        var body: some View {
+            NavigationStack {
+                if let feed = feed {
+                    FeedView(feed: feed)
+                } else {
+                    Text("feed not initialised")
+                }
+            }
+            .task {
+                await controller.loadSamples()
+                feed = controller.feeds.first
+            }
+        }
+    }
 
     static var previews: some View {
-        FeedView(feed: feed)
+        Container()
+            .previewInterfaceOrientation(.portrait)
+            .environmentObject(controller)
     }
 }

@@ -48,7 +48,12 @@ struct HomeView: View {
             .navigationDestination(for: Feed.self) { feed in
                 FeedView(feed: feed)
             }
+            .navigationTitle("Home")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItemGroup(placement: .principal) {
+                    Text("")
+                }
                 ToolbarItemGroup(placement: .navigation) {
                     Image("logo")
                         .resizable()
@@ -133,9 +138,14 @@ private struct FeedRow: View {
 
 /// Preview
 struct HomeView_Previews: PreviewProvider {
+    static let controller: FeedsController = .preview
+
     static var previews: some View {
         HomeView()
             .previewInterfaceOrientation(.portrait)
-            .environmentObject(FeedsController.preview)
+            .environmentObject(controller)
+            .task {
+                await controller.loadSamples()
+            }
     }
 }

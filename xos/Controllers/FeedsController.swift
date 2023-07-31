@@ -29,11 +29,24 @@ class FeedsController: ObservableObject {
         refresh()
     }
 
-    /// Shared instance of the DataController
+    /// Shared instance of the controller
     static let shared: FeedsController = .init(DataStore.shared)
 
-    /// Preview instance of the DataController
+    /// Preview instance of the controller
     static let preview: FeedsController = .init(DataStore.preview)
+
+    // Loads sample data
+    func loadSamples() async {
+        // add sample data for preview
+        var samples: [(String, String?)] = []
+        samples.append(("https://spectrum.ieee.org/feeds/feed.rss", nil))
+        samples.append(("https://simonwillison.net/atom/everything/", "Willison blog"))
+        for sample in samples {
+            if case .failure(let error) = await self.addFeed(sample.0, name: sample.1) {
+                fatalError("Failed to load samples: \(error)")
+            }
+        }
+    }
 
     /// Refreshes  the feeds
     func refresh() {
@@ -82,20 +95,7 @@ class FeedsController: ObservableObject {
         let feed = Feed(context: store.context)
         feed.id = UUID()
         feed.link = link
-        // TODO: complete the feeds
-        switch rawFeed {
-        case .rss(let rssFeed):
-            feed.title = rssFeed.title
-            feed.desc = rssFeed.description
-            feed.image = rssFeed.image?.url
-        case .atom(let atomFeed):
-            feed.title = atomFeed.title
-            feed.image = atomFeed.logo
-        case .json(let jsonFeed):
-            feed.title = jsonFeed.title
-            feed.desc = jsonFeed.description
-            feed.image = jsonFeed.icon
-        }
+        feed.extractFrom(rawFeed, extractArticles: true)
 
         store.save()
         refresh()
@@ -123,6 +123,116 @@ extension FeedParser {
             self.parseAsync(queue: DispatchQueue(label: "my.concurrent.queue", attributes: .concurrent)) { result in
                 continuation.resume(returning: result)
             }
+        }
+    }
+}
+
+extension Feed {
+    /// Extracts the feed from the XML info
+    func extractFrom(_ rawFeed: FeedKit.Feed, extractArticles: Bool = false) {
+        switch rawFeed {
+        case .rss(let rssFeed):
+            title = rssFeed.title
+            desc = rssFeed.description
+            image = rssFeed.image?.url
+
+        case .atom(let atomFeed):
+            title = atomFeed.title
+            image = atomFeed.logo
+
+        case .json(let jsonFeed):
+            title = jsonFeed.title
+            desc = jsonFeed.description
+            image = jsonFeed.icon
+        }
+
+        if extractArticles {
+            switch rawFeed {
+            case .rss(let rssFeed):
+                extractRssFeedArticles(rssFeed)
+            case .atom(let atomFeed):
+                extractAtomFeedArticles(atomFeed)
+            case .json(let jsonFeed):
+                extractJsonFeedArticles(jsonFeed)
+            }
+        }
+    }
+
+    /// Checks if the feed contains an article
+    func containsArticle(_ link: String?) -> Bool {
+        let articles = self.articles?.allObjects as? [Article]
+        return articles?.contains(where: {
+            $0.link?.absoluteString == link
+        }) ?? false
+    }
+
+    /// Extract the articles for a RSS feed
+    private func extractRssFeedArticles(_ rssFeed: RSSFeed) {
+        for item in rssFeed.items ?? [] {
+            if containsArticle(item.link) {
+                continue
+            }
+
+            let article: Article
+            if let context = managedObjectContext {
+                article = Article(context: context)
+            } else {
+                article = Article()
+            }
+
+            article.id = UUID()
+            article.link = item.link.map { URL(string: $0) }!
+            article.title = item.title
+            article.desc = item.description
+            article.date = item.pubDate
+            addToArticles(article)
+        }
+    }
+
+    /// Extract the articles for an Atom feed
+    private func extractAtomFeedArticles(_ atomFeed: AtomFeed) {
+        for entry in atomFeed.entries ?? [] {
+            let link = entry.links?.first?.attributes?.href
+            if containsArticle(link) {
+                continue
+            }
+
+            let article: Article
+            if let context = managedObjectContext {
+                article = Article(context: context)
+            } else {
+                article = Article()
+            }
+
+            article.id = UUID()
+            article.link = link.map { URL(string: $0) }!
+            article.title = entry.title
+            article.desc = entry.summary?.value
+            article.date = entry.published
+            addToArticles(article)
+        }
+    }
+
+    /// Extract the articles for a JSON feed
+    private func extractJsonFeedArticles(_ jsonFeed: JSONFeed) {
+        for item in jsonFeed.items ?? [] {
+            if containsArticle(item.url) {
+                continue
+            }
+
+            let article: Article
+            if let context = managedObjectContext {
+                article = Article(context: context)
+            } else {
+                article = Article()
+            }
+
+            article.id = UUID()
+            article.link = item.url.map { URL(string: $0) }!
+            article.title = item.title
+            article.desc = item.summary
+            article.date = item.datePublished
+            addToArticles(article)
         }
     }
 }

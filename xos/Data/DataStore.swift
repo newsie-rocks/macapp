@@ -22,22 +22,7 @@ struct DataStore {
     static let shared: DataStore = .init()
 
     /// Preview instance of the store
-    static var preview: DataStore = {
-        let store = DataStore(inMemory: true)
-
-        // add sample data for preview
-        var samples: [(String, String)] = []
-        samples.append(("https://ai.googleblog.com/atom.xml", "Google AI"))
-        samples.append(("https://simonwillison.net/atom/everything/", "Willison blog"))
-        for sample in samples {
-            let feed = Feed(context: store.context)
-            feed.id = UUID()
-            feed.link = URL(string: sample.0)
-            feed.title = sample.1
-        }
-
-        return store
-    }()
+    static var preview: DataStore = .init(inMemory: true)
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "DataModel")
