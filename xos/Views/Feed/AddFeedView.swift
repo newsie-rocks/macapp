@@ -55,7 +55,7 @@ struct AddFeedView: View {
                         .textContentType(.URL)
                         .textInputAutocapitalization(.never)
                         #endif
-                    TextField("Name", text: $name)
+                    TextField("Name (optional)", text: $name)
                         .disableAutocorrection(true)
                         .focused($focusedField, equals: .name)
                         .disabled(isInProgress)

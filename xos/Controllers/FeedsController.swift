@@ -86,10 +86,15 @@ class FeedsController: ObservableObject {
         switch rawFeed {
         case .rss(let rssFeed):
             feed.title = rssFeed.title
+            feed.desc = rssFeed.description
+            feed.image = rssFeed.image?.url
         case .atom(let atomFeed):
             feed.title = atomFeed.title
+            feed.image = atomFeed.logo
         case .json(let jsonFeed):
             feed.title = jsonFeed.title
+            feed.desc = jsonFeed.description
+            feed.image = jsonFeed.icon
         }
 
         store.save()

@@ -148,7 +148,6 @@
 		011ADCD32A740654005F38EE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				011ADCDD2A742476005F38EE /* AddFeedView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -156,6 +155,7 @@
 		011ADCD72A741E8A005F38EE /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				011ADCDD2A742476005F38EE /* AddFeedView.swift */,
 				011ADCD82A741E9F005F38EE /* FeedView.swift */,
 			);
 			path = Feed;

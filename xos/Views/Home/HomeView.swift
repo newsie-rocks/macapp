@@ -89,12 +89,30 @@ struct HomeView: View {
 private struct FeedRow: View {
     let feed: Feed
 
+    var logoUrl: URL? {
+        feed.image.flatMap { URL(string: $0) }
+    }
+
     var body: some View {
-        // NB: we pass a Hashable value instead of a View, so that the view
-        // is not created each time the row is rendered
         NavigationLink(value: feed) {
-            // NB: This shows as a separate page
-            Label("\(feed.title ?? "__")", systemImage: "book")
+            HStack {
+                AsyncImage(url: logoUrl) { image in
+                    image.resizable()
+                } placeholder: {
+                    Color.gray
+                }
+                .frame(width: 40, height: 40)
+                .clipShape(RoundedRectangle(cornerRadius: 4))
+                Spacer()
+                    .frame(width: 12)
+                VStack(alignment: .leading) {
+                    Text(feed.title ?? "")
+                    Spacer()
+                        .frame(height: 8)
+                    Text(feed.title ?? "")
+                        .font(.caption)
+                }
+            }
         }
     }
 }
