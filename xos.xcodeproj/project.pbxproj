@@ -18,7 +18,7 @@
 		01375D142A78391A00358B30 /* ArticleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01375D132A78391A00358B30 /* ArticleInfoView.swift */; };
 		01375D162A78431300358B30 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01375D152A78431300358B30 /* WebView.swift */; };
 		01375D192A7860D900358B30 /* FeedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01375D182A7860D900358B30 /* FeedListView.swift */; };
-		01375D1B2A7912AC00358B30 /* HtmlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01375D1A2A7912AC00358B30 /* HtmlView.swift */; };
+		01375D1B2A7912AC00358B30 /* HTMLStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01375D1A2A7912AC00358B30 /* HTMLStringView.swift */; };
 		0141230B2A7742CB0071BA62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01FBACCF2A76CBA20091A123 /* LaunchScreen.storyboard */; platformFilter = ios; };
 		01737E4B2A60108700CD6F3C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 01737E4A2A60108700CD6F3C /* Settings.bundle */; };
 		01C031842A6020270076C3EB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C031832A6020270076C3EB /* SettingsView.swift */; };
@@ -63,7 +63,7 @@
 		01375D132A78391A00358B30 /* ArticleInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleInfoView.swift; sourceTree = "<group>"; };
 		01375D152A78431300358B30 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		01375D182A7860D900358B30 /* FeedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListView.swift; sourceTree = "<group>"; };
-		01375D1A2A7912AC00358B30 /* HtmlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlView.swift; sourceTree = "<group>"; };
+		01375D1A2A7912AC00358B30 /* HTMLStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringView.swift; sourceTree = "<group>"; };
 		01737E4A2A60108700CD6F3C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		01C031832A6020270076C3EB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		01C0318B2A6046250076C3EB /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				01375D152A78431300358B30 /* WebView.swift */,
-				01375D1A2A7912AC00358B30 /* HtmlView.swift */,
+				01375D1A2A7912AC00358B30 /* HTMLStringView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -418,7 +418,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then \n    swiftlint --fix && swiftlint\nelse\n    echo \"warning: SwiftLint not installed\"\nfi\n";
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  echo \"Not running Swift Format for Xcode Previews\"\n  exit 0;\nfi\n\nif which swiftlint > /dev/null; then \n    swiftlint --fix && swiftlint\nelse\n    echo \"warning: SwiftLint not installed\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -442,7 +442,7 @@
 				011ADCD62A740DD4005F38EE /* DataModel.xcdatamodeld in Sources */,
 				01DE421C2A769950002123B7 /* AppError.swift in Sources */,
 				011ADCE72A756B03005F38EE /* FeedsController.swift in Sources */,
-				01375D1B2A7912AC00358B30 /* HtmlView.swift in Sources */,
+				01375D1B2A7912AC00358B30 /* HTMLStringView.swift in Sources */,
 				01E4F6992A5F4C1000953FF6 /* RootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

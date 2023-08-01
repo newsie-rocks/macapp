@@ -20,7 +20,7 @@ struct ArticleView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 Text(article.title ?? "")
-                    .font(.title2)
+                    .font(.title3)
                     .bold()
                     .onTapGesture {
                         if let url = article.link {
@@ -29,9 +29,9 @@ struct ArticleView: View {
                     }
                 Spacer().frame(height: 16)
                 Text(article.date?.formatted() ?? "")
-                    .font(.subheadline)
+                    .font(.caption)
                 Spacer().frame(height: 16)
-                HTMLView(article.content ?? "")
+                HTMLStringView(article.content ?? "")
                 Spacer()
             }
             .padding()
