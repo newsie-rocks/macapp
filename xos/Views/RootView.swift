@@ -9,11 +9,13 @@ import CoreData
 import SwiftUI
 
 struct RootView: View {
+    @EnvironmentObject var feedsController: FeedsController
+    @State private var colVisibility = NavigationSplitViewVisibility.all
     @State private var selectedFeed: Feed?
     @State private var selectedArticle: Article?
 
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $colVisibility) {
             FeedListView(selectedFeed: $selectedFeed)
         } content: {
             if let feed = selectedFeed {
@@ -23,6 +25,9 @@ struct RootView: View {
             if let article = selectedArticle {
                 ArticleView(article: article)
             }
+        }
+        .onAppear {
+            colVisibility = .all
         }
     }
 }

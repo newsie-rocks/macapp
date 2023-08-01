@@ -38,12 +38,12 @@ struct BasicWebView: UIViewRepresentable {
         }
 
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-            print("Webview started loading.")
+//            print("Webview started loading.")
             parent.isLoading = true
         }
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            print("Webview finished loading.")
+//            print("Webview finished loading.")
             parent.isLoading = false
         }
 
@@ -56,7 +56,7 @@ struct BasicWebView: UIViewRepresentable {
             didFailProvisionalNavigation navigation: WKNavigation!,
             withError error: Error
         ) {
-            print("loading error: \(error)")
+//            print("loading error: \(error)")
             parent.isLoading = false
             parent.error = error
         }

@@ -37,7 +37,13 @@ struct FeedView: View {
             .listStyle(.grouped)
             #endif
             .refreshable {
-                // TODO: refresh the feed list
+                switch await feedsController.refreshFeed(feed) {
+                case .success:
+                    break
+                case .failure:
+                    // TODO: display an error
+                    break
+                }
             }
         }
         .navigationTitle("Feed")
@@ -82,6 +88,7 @@ private struct ArticleRow: View {
             if let summary = article.summary {
                 Text(summary)
                     .font(.caption)
+                    .lineLimit(3)
                 Spacer()
                     .frame(height: 8)
             }

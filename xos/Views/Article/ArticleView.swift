@@ -30,7 +30,11 @@ struct ArticleView: View {
                 Spacer().frame(height: 16)
                 Text(article.date?.formatted() ?? "")
                     .font(.caption)
-                Spacer().frame(height: 16)
+                Divider()
+                if let aiSummary = article.aiSummary {
+                    Text(aiSummary)
+                    Divider()
+                }
                 HTMLStringView(article.content ?? "")
                 Spacer()
             }

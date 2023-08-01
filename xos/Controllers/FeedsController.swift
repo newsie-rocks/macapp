@@ -42,7 +42,7 @@ class FeedsController: ObservableObject {
         samples.append(("https://spectrum.ieee.org/feeds/feed.rss", nil))
         samples.append(("https://simonwillison.net/atom/everything/", "Willison blog"))
         for sample in samples {
-            if case .failure(let error) = await self.addFeed(sample.0, name: sample.1) {
+            if case .failure(let error) = await addFeed(sample.0, name: sample.1) {
                 fatalError("Failed to load samples: \(error)")
             }
         }
@@ -50,40 +50,105 @@ class FeedsController: ObservableObject {
 
     /// Adds a new feed
     func addFeed(
-        _ url: String,
+        _ urlString: String,
         name: String?
-    ) async -> Result<Void, AppError> {
+    ) async -> Result<Feed, AppError> {
         // check the URL is valid
-        guard let link = URL(string: url) else {
-            return .failure(.invalidParam("invalid URL \(url)"))
+        guard let url = URL(string: urlString) else {
+            return .failure(.invalidParam("invalid URL \(urlString)"))
         }
 
         // check that the feed is not already added
         if feeds.contains(where: { feed in
-            feed.link == link
+            feed.link == url
         }) {
             return .failure(.invalidParam("Already subscribed"))
         }
 
-        // parse the feed
+        // fetch & parse the raw feed
         let rawFeed: FeedKit.Feed
-        let parser = FeedKit.FeedParser(URL: link)
-        switch await parser.asyncParse() {
+        switch await fetchFeed(url) {
         case .success(let feed):
             rawFeed = feed
         case .failure(let error):
-            print(error)
-            return .failure(AppError.invalidParam("invalid RSS feed"))
+            return .failure(error)
         }
 
+        // assign to a new app feed
         let feed = Feed(context: store.context)
         feed.id = UUID()
-        feed.link = link
+        feed.link = url
         feed.extractFrom(rawFeed, extractArticles: true)
+
+        // summarise articles
+        let articles = feed.articles.array(of: Article.self).filter { article in
+            article.aiSummary == nil
+        }
+        switch await summarizeArticles(articles) {
+        case .success:
+            break
+        case .failure:
+            break
+        }
 
         store.save()
         refreshCache()
+        return .success(feed)
+    }
+
+    /// Refreshes a specific feed
+    func refreshFeed(_ feed: Feed) async -> Result<Void, AppError> {
+        guard let url = feed.link else {
+            return .failure(.invalidParam("invalid URL \(feed.link?.absoluteString ?? "")"))
+        }
+
+        let rawFeed: FeedKit.Feed
+        switch await fetchFeed(url) {
+        case .success(let feed):
+            rawFeed = feed
+        case .failure(let error):
+            return .failure(error)
+        }
+
+        feed.extractFrom(rawFeed, extractArticles: true)
+
+        // summarise articles
+        let articles = feed.articles.array(of: Article.self).filter { article in
+            article.aiSummary == nil
+        }
+        switch await summarizeArticles(articles) {
+        case .success:
+            break
+        case .failure:
+            break
+        }
+
+        refreshCache()
         return .success(())
+    }
+
+    /// Refreshes all the feeds
+    func refreshAllFeeds() async -> Result<Void, AppError> {
+        await withTaskGroup(
+            of: Result<Void, AppError>.self,
+            returning: Result<Void, AppError>.self
+        ) { [self] taskGroup in
+            for feed in feeds {
+                taskGroup.addTask { await self.refreshFeed(feed) }
+            }
+
+            for await taskResult in taskGroup {
+                switch taskResult {
+                case .success:
+                    continue
+                case .failure(let error):
+                    taskGroup.cancelAll()
+                    return .failure(AppError.generic("\(error)"))
+                }
+            }
+
+            return .success(())
+        }
     }
 
     /// Deletes a feed
@@ -96,6 +161,47 @@ class FeedsController: ObservableObject {
     /// Exposes the built-in feeds
     func x_builtInFeeds() -> [Feed] {
         []
+    }
+
+    /// Fetches a feed
+    private func fetchFeed(_ url: URL) async -> Result<FeedKit.Feed, AppError> {
+        let parser = FeedKit.FeedParser(URL: url)
+        return await parser.asyncParse()
+            .mapError {
+                print($0)
+                return AppError.invalidParam("invalid RSS feed")
+            }
+    }
+
+    /// Summarises an article
+    private func summarizeArticle(_ article: Article) async -> Result<Void, AppError> {
+        // TODO: summarise an article
+        article.aiSummary = "AI summary"
+        return .success(())
+    }
+
+    /// Summarises several articles
+    private func summarizeArticles(_ articles: [Article]) async -> Result<Void, AppError> {
+        await withTaskGroup(
+            of: Result<Void, AppError>.self,
+            returning: Result<Void, AppError>.self
+        ) { [self] taskGroup in
+            for article in articles {
+                taskGroup.addTask { await self.summarizeArticle(article) }
+            }
+
+            var result: Result<(), AppError> = .success(())
+            for await taskResult in taskGroup {
+                switch taskResult {
+                case .success:
+                    continue
+                case .failure(let error):
+                    result = .failure(AppError.generic("\(error)"))
+                }
+            }
+
+            return result
+        }
     }
 
     /// Refreshes the cache with al feeds
@@ -141,6 +247,7 @@ extension Feed {
 
         case .atom(let atomFeed):
             title = atomFeed.title
+            summary = atomFeed.subtitle?.value
             image = atomFeed.logo
 
         case .json(let jsonFeed):

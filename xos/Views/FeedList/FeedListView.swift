@@ -39,14 +39,29 @@ struct FeedListView: View {
                 // .deleteDisabled(!editMode?.isEditing)
             }
         }
+        .task {
+            switch await feedsController.refreshAllFeeds() {
+            case .success:
+                break
+            case .failure:
+                // TODO: show error
+                break
+            }
+        }
+        .refreshable {
+            switch await feedsController.refreshAllFeeds() {
+            case .success:
+                break
+            case .failure:
+                // TODO: show error
+                break
+            }
+        }
         #if os(iOS)
         .listStyle(.grouped)
         .navigationBarTitleDisplayMode(.inline)
         #endif
         .navigationTitle("Home")
-        .refreshable {
-            // TODO: implement refresh
-        }
         .toolbar {
             ToolbarItemGroup(placement: .principal) {
                 // NB: Hides the main title on screen
@@ -65,8 +80,12 @@ struct FeedListView: View {
                 // It seems to be the case because the sheet hides the sheet toolbar,
                 // so we limit the sheet size to cover half the screen
                 .sheet(isPresented: $isNewFeedSheetOpened) {
-                    AddFeedView()
-                        .presentationDetents([.fraction(0.75)])
+                    AddFeedView(
+                        onAdded: { feed in
+                            selectedFeed = feed
+                        }
+                    )
+                    .presentationDetents([.fraction(0.75)])
                 }
                 #if os(iOS)
                 EditButton()
@@ -115,8 +134,9 @@ private struct FeedRow: View {
                 Text(feed.title ?? "")
                 Spacer()
                     .frame(height: 8)
-                Text(feed.title ?? "")
+                Text(feed.summary ?? "")
                     .font(.caption)
+                    .lineLimit(3)
             }
         }
     }

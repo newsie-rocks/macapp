@@ -16,6 +16,7 @@ struct AddFeedView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var feedsController: FeedsController
 
+    var onAdded: ((Feed) -> Void)?
     @State private var url: String = ""
     @State private var name: String = ""
     @State private var error: String?
@@ -32,10 +33,13 @@ struct AddFeedView: View {
             url,
             name: name
         ) {
-        case .success:
+        case .success(let feed):
             error = nil
             showError = false
             dismiss()
+            if let onAdded = onAdded {
+                onAdded(feed)
+            }
         case .failure(let opError):
             error = opError.errorDescription
             showError = true
