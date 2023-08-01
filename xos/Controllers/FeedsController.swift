@@ -26,7 +26,7 @@ class FeedsController: ObservableObject {
 
     init(_ store: DataStore) {
         self.store = store
-        refresh()
+        refreshCache()
     }
 
     /// Shared instance of the controller
@@ -45,22 +45,6 @@ class FeedsController: ObservableObject {
             if case .failure(let error) = await self.addFeed(sample.0, name: sample.1) {
                 fatalError("Failed to load samples: \(error)")
             }
-        }
-    }
-
-    /// Refreshes  the feeds
-    func refresh() {
-        let request = NSFetchRequest<Feed>(entityName: "Feed")
-
-        var results: [Feed] = []
-        do {
-            results = try store.context.fetch(request)
-        } catch {
-            print("Could not fetch notes from Core Data.")
-        }
-
-        DispatchQueue.main.async {
-            self.feeds = results
         }
     }
 
@@ -98,7 +82,7 @@ class FeedsController: ObservableObject {
         feed.extractFrom(rawFeed, extractArticles: true)
 
         store.save()
-        refresh()
+        refreshCache()
         return .success(())
     }
 
@@ -106,12 +90,31 @@ class FeedsController: ObservableObject {
     func deleteFeed(_ feed: Feed) {
         store.context.delete(feed)
         store.save()
-        refresh()
+        refreshCache()
     }
 
     /// Exposes the built-in feeds
     func x_builtInFeeds() -> [Feed] {
         []
+    }
+
+    /// Refreshes the cache with al feeds
+    private func refreshCache() {
+        let request = NSFetchRequest<Feed>(entityName: "Feed")
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "title", ascending: true)
+        ]
+
+        var results: [Feed] = []
+        do {
+            results = try store.context.fetch(request)
+        } catch {
+            print("Could not fetch notes from Core Data.")
+        }
+
+        DispatchQueue.main.async {
+            self.feeds = results
+        }
     }
 }
 
@@ -133,7 +136,7 @@ extension Feed {
         switch rawFeed {
         case .rss(let rssFeed):
             title = rssFeed.title
-            desc = rssFeed.description
+            summary = rssFeed.description
             image = rssFeed.image?.url
 
         case .atom(let atomFeed):
@@ -142,7 +145,7 @@ extension Feed {
 
         case .json(let jsonFeed):
             title = jsonFeed.title
-            desc = jsonFeed.description
+            summary = jsonFeed.description
             image = jsonFeed.icon
         }
 
@@ -183,8 +186,13 @@ extension Feed {
             article.id = UUID()
             article.link = item.link.map { URL(string: $0) }!
             article.title = item.title
-            article.desc = item.description
             article.date = item.pubDate
+            if let content = item.content {
+                article.summary = item.description
+                article.content = content.contentEncoded
+            } else {
+                article.content = item.description
+            }
             addToArticles(article)
         }
     }
@@ -207,8 +215,10 @@ extension Feed {
             article.id = UUID()
             article.link = link.map { URL(string: $0) }!
             article.title = entry.title
-            article.desc = entry.summary?.value
             article.date = entry.published
+            article.summary = entry.summary?.value
+            article.content = entry.content?.value
+
             addToArticles(article)
         }
     }
@@ -230,8 +240,9 @@ extension Feed {
             article.id = UUID()
             article.link = item.url.map { URL(string: $0) }!
             article.title = item.title
-            article.desc = item.summary
             article.date = item.datePublished
+            article.summary = item.summary
+            article.content = item.contentHtml
             addToArticles(article)
         }
     }

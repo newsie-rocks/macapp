@@ -8,38 +8,42 @@
 import SwiftUI
 
 struct FeedView: View {
+    @EnvironmentObject var feedsController: FeedsController
     @ObservedObject var feed: Feed
-    @State var isInfoMenuOpened: Bool = false
+    @Binding var selectedArticle: Article?
+    @State private var isInfoMenuOpened: Bool = false
 
     var logoUrl: URL? {
         feed.image.flatMap { URL(string: $0) }
     }
 
+    var articles: [Article] {
+        feed.articles.array(of: Article.self)
+            .sorted(by: { $0.date ?? Date.now > $1.date ?? Date.now })
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
-            List {
-//                Section {
-//                    Text(feed.title ?? "")
-//                        .font(.title2)
-//                        .bold()
-//                }
+            List(selection: $selectedArticle) {
                 Section {
-                    ForEach(feed.articles.array(of: Article.self)) { article in
-                        ArticleRow(article: article)
+                    ForEach(articles) { article in
+                        NavigationLink(value: article) {
+                            ArticleRow(article: article)
+                        }
                     }
                 }
             }
             #if os(iOS)
             .listStyle(.grouped)
-            #else
-            .listStyle(.plain)
             #endif
-            .navigationDestination(for: Article.self) { article in
-                ArticleView(article: article)
+            .refreshable {
+                // TODO: refresh the feed list
             }
         }
         .navigationTitle("Feed")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
             ToolbarItemGroup(placement: .principal) {
                 AsyncImage(url: logoUrl) { image in
@@ -58,8 +62,8 @@ struct FeedView: View {
                 }
                 .sheet(isPresented: $isInfoMenuOpened) {
                     FeedInfoView(feed: feed)
-                    .presentationDetents([.medium])
-                    .padding()
+                        .presentationDetents([.medium])
+                        .padding()
                 }
             }
         }
@@ -71,15 +75,18 @@ private struct ArticleRow: View {
     @ObservedObject var article: Article
 
     var body: some View {
-        NavigationLink(value: article) {
-            VStack(alignment: .leading) {
-                Text(article.title ?? "")
+        VStack(alignment: .leading) {
+            Text(article.title ?? "")
+            Spacer()
+                .frame(height: 8)
+            if let summary = article.summary {
+                Text(summary)
+                    .font(.caption)
                 Spacer()
                     .frame(height: 8)
-                // TODO: fix description
-                Text("FIXME Description")
-                    .font(.caption)
             }
+            Text(article.date?.formatted() ?? "")
+                .font(.caption)
         }
     }
 }
@@ -92,11 +99,12 @@ struct FeedView_Previews: PreviewProvider {
     struct Container: View {
         @EnvironmentObject var controller: FeedsController
         @State var feed: Feed?
+        @State var selectedArticle: Article?
 
         var body: some View {
             NavigationStack {
                 if let feed = feed {
-                    FeedView(feed: feed)
+                    FeedView(feed: feed, selectedArticle: $selectedArticle)
                 } else {
                     Text("feed not initialised")
                 }

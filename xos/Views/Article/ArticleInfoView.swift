@@ -14,7 +14,7 @@ struct ArticleInfoView: View {
         VStack(alignment: .leading) {
             Text(article.title ?? "").font(.title3).bold()
             Spacer().frame(height: 12)
-            Text(article.desc ?? "").font(.body)
+            Text(article.summary ?? "").font(.body)
             Spacer().frame(height: 12)
             Text(article.link?.absoluteString ?? "")
             Spacer()

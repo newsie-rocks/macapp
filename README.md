@@ -1,4 +1,4 @@
-# Macapp
+# Xos
 
 MacOS and iOS app
 

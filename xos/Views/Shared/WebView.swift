@@ -8,6 +8,7 @@
 import SwiftUI
 import WebKit
 
+#if os(iOS)
 /// A basic Web view
 struct BasicWebView: UIViewRepresentable {
     let url: URL
@@ -50,14 +51,20 @@ struct BasicWebView: UIViewRepresentable {
             print("Webview failed with error: \(error.localizedDescription)")
         }
 
-        func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        func webView(
+            _ webView: WKWebView,
+            didFailProvisionalNavigation navigation: WKNavigation!,
+            withError error: Error
+        ) {
             print("loading error: \(error)")
             parent.isLoading = false
             parent.error = error
         }
     }
 }
+#endif
 
+#if os(iOS)
 /// A web view with a loading indicator and error
 struct WebView: View {
     let url: URL?
@@ -83,3 +90,4 @@ struct WebView: View {
         }
     }
 }
+#endif

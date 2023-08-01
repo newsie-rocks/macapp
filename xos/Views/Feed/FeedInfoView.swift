@@ -14,7 +14,7 @@ struct FeedInfoView: View {
         VStack(alignment: .leading) {
             Text(feed.title ?? "").font(.title).bold()
             Spacer().frame(height: 12)
-            Text(feed.desc ?? "").font(.body)
+            Text(feed.summary ?? "").font(.body)
             Spacer().frame(height: 12)
             Text(feed.link?.absoluteString ?? "")
             Spacer()
