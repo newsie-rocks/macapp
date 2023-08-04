@@ -9,6 +9,7 @@
         <attribute name="summary" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="feed" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Feed" inverseName="articles" inverseEntity="Feed"/>
+        <relationship name="searches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Search"/>
     </entity>
     <entity name="Feed" representedClassName="Feed" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -18,5 +19,11 @@
         <attribute name="summary" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="articles" toMany="YES" deletionRule="Nullify" destinationEntity="Article" inverseName="feed" inverseEntity="Article"/>
+    </entity>
+    <entity name="Search" representedClassName="Search" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="query" optional="YES" attributeType="String"/>
+        <relationship name="articles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Article"/>
     </entity>
 </model>

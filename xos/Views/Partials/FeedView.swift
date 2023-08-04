@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct FeedView: View {
-    @EnvironmentObject var feedsController: FeedsController
-    @ObservedObject var feed: Feed
-    @Binding var selectedArticle: Article?
+    var feed: Feed
+    @Binding var activeArticle: Article?
+    @EnvironmentObject private var feedsController: FeedsController
     @State private var isInfoMenuOpened: Bool = false
 
     var logoUrl: URL? {
@@ -24,7 +24,7 @@ struct FeedView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            List(selection: $selectedArticle) {
+            List(selection: $activeArticle) {
                 Section {
                     ForEach(articles) { article in
                         NavigationLink(value: article) {
@@ -106,12 +106,12 @@ struct FeedView_Previews: PreviewProvider {
     struct Container: View {
         @EnvironmentObject var controller: FeedsController
         @State var feed: Feed?
-        @State var selectedArticle: Article?
+        @State var activeFeed: Article?
 
         var body: some View {
             NavigationStack {
                 if let feed = feed {
-                    FeedView(feed: feed, selectedArticle: $selectedArticle)
+                    FeedView(feed: feed, activeArticle: $activeFeed)
                 } else {
                     Text("feed not initialised")
                 }

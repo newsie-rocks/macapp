@@ -14,6 +14,9 @@ struct SettingsView: View {
 
     var body: some View {
         List {
+                NavigationLink("Go") {
+                    Text("here")
+                }
             Section("Account") {
                 HStack {
                     Label("Email", systemImage: "envelope")

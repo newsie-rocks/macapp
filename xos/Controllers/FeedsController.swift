@@ -158,6 +158,23 @@ class FeedsController: ObservableObject {
         refreshCache()
     }
 
+    /// Searches a feed
+    func search(query: String) async {
+        let search = Search(context: store.context)
+        search.id = UUID()
+        search.date = Date.now
+        search.query = query
+
+        // simulate API call and retrieve the articles for a search
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+
+//        let feed = feeds.first!
+//        search.addToArticles(<#T##value: Article##Article#>)
+
+        store.save()
+        refreshCache()
+    }
+
     /// Exposes the built-in feeds
     func x_builtInFeeds() -> [Feed] {
         []
@@ -174,7 +191,7 @@ class FeedsController: ObservableObject {
     }
 
     /// Summarises an article
-    private func summarizeArticle(_ article: Article) async -> Result<Void, AppError> {
+    private func summariseArticle(_ article: Article) async -> Result<Void, AppError> {
         // TODO: summarise an article
         article.aiSummary = "AI summary"
         return .success(())
@@ -187,7 +204,7 @@ class FeedsController: ObservableObject {
             returning: Result<Void, AppError>.self
         ) { [self] taskGroup in
             for article in articles {
-                taskGroup.addTask { await self.summarizeArticle(article) }
+                taskGroup.addTask { await self.summariseArticle(article) }
             }
 
             var result: Result<(), AppError> = .success(())
